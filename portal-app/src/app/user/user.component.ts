@@ -15,24 +15,27 @@ export class UserComponent implements OnInit {
 users: User[];
 
 constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
-
-  }
+}
 
   ngOnInit() {
+    this.getUsers();
+  };
+
+  getUsers() {
     this.userService.getUsers()
       .subscribe( data => {
         this.users = data;
       });
-  };
+  }
 
-  deleteUser(user: User): void {
+  onDeleteClicked(user: User): void {
     this.userService.deleteUser(user)
       .subscribe( data => {
         this.users = this.users.filter(u => u !== user);
       })
   };
 
-  public setSharedUser(newUser: User) {
+  public onUpdateClicked(newUser: User) {
     this.userService.setSharedUser(newUser);
     this.router.navigate(['/update'], { replaceUrl: true });
   };

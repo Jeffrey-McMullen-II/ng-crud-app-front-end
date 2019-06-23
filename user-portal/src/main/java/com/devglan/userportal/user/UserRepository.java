@@ -1,4 +1,4 @@
-package com.devglan.userportal;
+package com.devglan.userportal.user;
 
 import org.springframework.data.repository.Repository;
 
@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface UserRepository extends Repository<User, Integer> {
 
-    void delete(User user);
+    User save(User user);
 
     List<User> findAll();
 
     User findOne(int id);
 
-    User save(User user);
+    void delete(User user);
 }

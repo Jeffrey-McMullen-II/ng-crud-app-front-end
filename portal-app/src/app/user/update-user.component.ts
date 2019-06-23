@@ -19,7 +19,7 @@ export class UpdateUserComponent {
       this.user = this.userService.getSharedUser();
   }
 
-  updateUser(): void {
+  onUpdateClicked(): void {
     this.userService.updateUser(this.user)
         .subscribe(data => {
           alert("User updated successfully.");

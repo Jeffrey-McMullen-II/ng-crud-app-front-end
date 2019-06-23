@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {Observable} from 'rxjs';
 import { User } from '../models/user.model';
 
 import {Component} from '@angular/core';
@@ -18,20 +18,20 @@ export class UserService {
 
   private userUrl = 'http://localhost:8080/user-portal/users';
 
-  public getUsers() {
-    return this.http.get<User[]>(this.userUrl);
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.userUrl}`);
   }
 
-  public deleteUser(user) {
-    return this.http.delete(this.userUrl + "/"+ user.id);
+  public deleteUser(user): Observable<User> {
+    return this.http.delete<User>(`${this.userUrl}` + "/" + `${user.id}`);
   }
 
-  public createUser(user) {
-    return this.http.post<User>(this.userUrl, user);
+  public createUser(user): Observable<User> {
+    return this.http.post<User>(`${this.userUrl}`, user);
   }
 
-  public updateUser(user) {
-    return this.http.put<User>(this.userUrl, user);
+  public updateUser(user): Observable<User> {
+    return this.http.put<User>(`${this.userUrl}`, user);
   }
 
   public getSharedUser() {

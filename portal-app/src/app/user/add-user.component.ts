@@ -15,7 +15,7 @@ export class AddUserComponent {
 
   }
 
-  createUser(): void {
+  onCreateClicked(): void {
     this.userService.createUser(this.user)
         .subscribe( data => {
           alert("User created successfully.");
