@@ -4,8 +4,6 @@ import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 
-
-
 const routes: Routes = [
   { path: 'users', component: UserComponent },
   { path: 'add', component: AddUserComponent },

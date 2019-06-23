@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
-import { UserService } from './user/user.service';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { UserService } from './user/shared/user.service';
 
 @NgModule({
   declarations: [
