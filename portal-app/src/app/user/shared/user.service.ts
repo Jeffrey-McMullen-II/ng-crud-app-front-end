@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { User } from './user.model';
 import { Component } from '@angular/core';
 
-
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
