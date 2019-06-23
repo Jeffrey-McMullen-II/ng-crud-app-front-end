@@ -1,4 +1,4 @@
-package com.devglan.userportal.user;
+package com.devglan.userportal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping({"/users"})
-class UserController {
+public class UserController {
 
     @Autowired
     private UserService userService;

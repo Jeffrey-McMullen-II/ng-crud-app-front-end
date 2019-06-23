@@ -37,5 +37,4 @@ constructor(private router: Router, private route: ActivatedRoute, private userS
     this.userService.setSharedUser(newUser);
     this.router.navigate(['/update'], { replaceUrl: true });
   };
-
 }

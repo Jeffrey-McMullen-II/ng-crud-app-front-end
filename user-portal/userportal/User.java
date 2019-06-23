@@ -1,4 +1,4 @@
-package com.devglan.userportal.user;
+package com.devglan.userportal;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Getter
 @Setter
@@ -14,9 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = -9020035599331472022L;
+class User {
 
     @Id
     @Column(name = "id")
