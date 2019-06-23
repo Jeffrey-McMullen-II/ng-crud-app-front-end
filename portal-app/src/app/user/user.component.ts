@@ -29,6 +29,7 @@ constructor(private router: Router, private route: ActivatedRoute, private userS
   onDeleteClicked(user: User): void {
     this.userService.deleteUser(user)
       .subscribe( data => {
+        //alert("User deleted successfully.");
         this.users = this.users.filter(u => u !== user);
       })
   };

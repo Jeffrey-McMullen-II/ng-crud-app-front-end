@@ -1,8 +1,8 @@
-package com.devglan.userportal.user;
+package com.devglan.userportal.user.model;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;

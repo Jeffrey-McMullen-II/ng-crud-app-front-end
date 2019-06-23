@@ -1,21 +1,22 @@
-package com.devglan.userportal.user;
+package com.devglan.userportal.user.service;
 
+import com.devglan.userportal.user.model.User;
+import com.devglan.userportal.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-class UserService {
+public class UserService {
 
     @Autowired
     private UserRepository repository;
 
-    User create(User user) {
+    public User create(User user) {
         return repository.save(user);
     }
 
-    User delete(int id) {
+    public User delete(int id) {
         User user = findById(id);
         if (user != null) {
             repository.delete(user);
@@ -23,15 +24,15 @@ class UserService {
         return user;
     }
 
-    List<User> findAll() {
+    public List<User> findAll() {
         return repository.findAll();
     }
 
-    User findById(int id) {
+    public User findById(int id) {
         return repository.findOne(id);
     }
 
-    User update(User user) {
+    public User update(User user) {
         return repository.save(user);
     }
 }
