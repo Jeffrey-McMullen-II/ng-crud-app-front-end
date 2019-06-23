@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
+import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
-import { AppRoutingModule } from './app.routing.module';
 import { UserService } from './user/user.service';
-import { HttpClientModule } from "@angular/common/http";
-import { AddUserComponent } from './user/add-user.component';
-import { UpdateUserComponent } from './user/update-user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 
 @NgModule({
   declarations: [

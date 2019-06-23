@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { User } from "../models/user.model";
+import { Router } from "@angular/router";
+import { UserService } from "../user.service";
 
-import { User } from '../models/user.model';
-import { UserService } from './user.service';
 
 @Component({
   templateUrl: './add-user.component.html'
@@ -20,7 +20,5 @@ export class AddUserComponent {
         .subscribe( data => {
           alert("User created successfully.");
         });
-
   };
-
 }

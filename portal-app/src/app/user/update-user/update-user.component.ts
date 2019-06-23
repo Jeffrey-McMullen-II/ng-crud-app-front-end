@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { User } from "../models/user.model";
+import { UserService } from "../user.service";
 
-import { User } from '../models/user.model';
-import { UserService } from './user.service';
 
 @Component({
   templateUrl: './update-user.component.html'
