@@ -19,13 +19,13 @@ import org.mockito.MockitoAnnotations;
 
 public class UserServiceTest {
 
+    @Mock
+    UserRepository userRepository; //Mocks go above inject mocks
+
     @InjectMocks
      UserService userService;
 
-    @Mock
-    UserRepository userRepository;
-
-    private List<User> testUsers = new ArrayList();
+    private List<User> testUsers = new ArrayList<>();
 
     @Before
     public void init() {
@@ -59,15 +59,22 @@ public class UserServiceTest {
     @Test
     public void findUserByUserId() {
         when(userRepository.findOne(1)).thenReturn(testUsers.get(1));
-        when(userRepository.findOne(10)).thenReturn(null);
 
         User returnedUser = userService.findUserByUserId(1);
-        User nullUser = userService.findUserByUserId(2);
 
         verify(userRepository, times(1)).findOne(1);
-        verify(userRepository, times(1)).findOne(2);
 
         assertEquals(testUsers.get(1), returnedUser);
+    }
+
+    @Test
+    public void findUserByUserId_WhenIdNotFound() {
+        when(userRepository.findOne(10)).thenReturn(null);
+
+        User nullUser = userService.findUserByUserId(2);
+
+        verify(userRepository, times(1)).findOne(2);
+
         assertNull(nullUser);
     }
 
