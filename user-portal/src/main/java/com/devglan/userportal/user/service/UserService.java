@@ -12,27 +12,28 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User create(User user) {
+    public User createUser(User user) {
         return repository.save(user);
     }
 
-    public User delete(int id) {
-        User user = findById(id);
-        if (user != null) {
-            repository.delete(user);
-        }
-        return user;
-    }
-
-    public List<User> findAll() {
+    public List<User> findAllUsers() {
         return repository.findAll();
     }
 
-    public User findById(int id) {
+    public User findUserByUserId(int id) {
         return repository.findOne(id);
     }
 
-    public User update(User user) {
+    public User updateUser(User user) {
         return repository.save(user);
+    }
+
+    public User deleteUserByUserId(int id) {
+        User user = findUserByUserId(id);
+        if (user != null) {
+            repository.delete(user);
+            return user;
+        }
+        return null;
     }
 }

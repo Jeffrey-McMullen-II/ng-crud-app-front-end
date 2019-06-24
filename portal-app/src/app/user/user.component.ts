@@ -22,7 +22,7 @@ constructor(private router: Router, private route: ActivatedRoute, private userS
   getUsers() {
     this.userService.getUsers()
       .subscribe( data => {
-        this.users = data;
+        this.users = data; 
       });
   }
 

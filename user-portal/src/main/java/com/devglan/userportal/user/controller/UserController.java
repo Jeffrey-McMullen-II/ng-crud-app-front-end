@@ -10,33 +10,33 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping({"/users"})
-class UserController {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
-        return ResponseEntity.ok(userService.create(user));
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<User>> findAllUsers() {
+        return ResponseEntity.ok(userService.findAllUsers());
     }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity<User> findOne(@PathVariable("id") int id) {
-        return ResponseEntity.ok(userService.findById(id));
+    public ResponseEntity<User> findUserByUserId(@PathVariable("id") int id) {
+        return ResponseEntity.ok(userService.findUserByUserId(id));
     }
 
     @PutMapping
-    public ResponseEntity<User> update(@RequestBody User user) {
-        return ResponseEntity.ok(userService.update(user));
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.updateUser(user));
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<User> delete(@PathVariable("id") int id) {
-        return ResponseEntity.ok(userService.delete(id));
+    public ResponseEntity<User> deleteUserByUserId(@PathVariable("id") int id) {
+        return ResponseEntity.ok(userService.deleteUserByUserId(id));
     }
 }
