@@ -1,4 +1,4 @@
-package com.devglan.userportal.user.model;
+package com.devglan.userportal.user;
 
 import lombok.*;
 

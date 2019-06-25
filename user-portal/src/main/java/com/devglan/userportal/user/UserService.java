@@ -1,7 +1,5 @@
-package com.devglan.userportal.user.service;
+package com.devglan.userportal.user;
 
-import com.devglan.userportal.user.model.User;
-import com.devglan.userportal.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -18,9 +16,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }
+    public List<User> findAllUsers() { return userRepository.findAll();}
 
     public User findUserByUserId(int id) {
         return userRepository.findOne(id);

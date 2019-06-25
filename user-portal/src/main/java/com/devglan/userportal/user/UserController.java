@@ -1,8 +1,5 @@
-package com.devglan.userportal.user.controller;
+package com.devglan.userportal.user;
 
-import com.devglan.userportal.user.service.UserService;
-import com.devglan.userportal.user.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +22,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAllUsers() {
-        return ResponseEntity.ok(userService.findAllUsers());
-    }
+    public ResponseEntity<List<User>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity<User> findUserByUserId(@PathVariable("id") int id) {

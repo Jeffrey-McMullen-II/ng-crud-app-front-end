@@ -1,7 +1,5 @@
-package com.devglan.userportal.user.controller;
+package com.devglan.userportal.user;
 
-import com.devglan.userportal.user.model.User;
-import com.devglan.userportal.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;

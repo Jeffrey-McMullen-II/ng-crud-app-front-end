@@ -1,7 +1,5 @@
-package com.devglan.userportal.user.service;
+package com.devglan.userportal.user;
 
-import com.devglan.userportal.user.model.User;
-import com.devglan.userportal.user.repository.UserRepository;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -23,7 +21,7 @@ public class UserServiceTest {
     UserRepository userRepository; //Mocks go above inject mocks
 
     @InjectMocks
-     UserService userService;
+    UserService userService;
 
     private List<User> testUsers = new ArrayList<>();
 
@@ -107,6 +105,7 @@ public class UserServiceTest {
         User nullUser = userService.findUserByUserId(10);
 
         verify(userRepository, times(1)).findOne(10);
+        verify(userRepository, times(0)).delete(null);
 
         assertNull(nullUser);
     }
