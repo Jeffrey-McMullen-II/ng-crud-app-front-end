@@ -2,7 +2,6 @@ package com.devglan.userportal.user.service;
 
 import com.devglan.userportal.user.model.User;
 import com.devglan.userportal.user.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

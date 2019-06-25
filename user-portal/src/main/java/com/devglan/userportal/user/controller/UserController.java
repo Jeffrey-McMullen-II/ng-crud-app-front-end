@@ -32,7 +32,13 @@ public class UserController {
     @GetMapping(path = {"/{id}"})
     public ResponseEntity<User> findUserByUserId(@PathVariable("id") int id) {
 
-        return ResponseEntity.ok(userService.findUserByUserId(id));
+        User user = userService.findUserByUserId(id);
+
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping
@@ -42,6 +48,13 @@ public class UserController {
 
     @DeleteMapping(path = {"/{id}"})
     public ResponseEntity<User> deleteUserByUserId(@PathVariable("id") int id) {
-        return ResponseEntity.ok(userService.deleteUserByUserId(id));
+
+        User user = userService.deleteUserByUserId(id);
+
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 }

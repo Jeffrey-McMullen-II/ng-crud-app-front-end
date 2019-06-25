@@ -68,12 +68,12 @@ public class UserServiceTest {
     }
 
     @Test
-    public void findUserByUserId_WhenIdNotFound() {
+    public void findUserByUserId_WhenUserIdNotFound() {
         when(userRepository.findOne(10)).thenReturn(null);
 
-        User nullUser = userService.findUserByUserId(2);
+        User nullUser = userService.findUserByUserId(10);
 
-        verify(userRepository, times(1)).findOne(2);
+        verify(userRepository, times(1)).findOne(10);
 
         assertNull(nullUser);
     }
@@ -98,5 +98,16 @@ public class UserServiceTest {
         verify(userRepository, times(1)).delete(testUsers.get(1));
 
         assertEquals(testUsers.get(1), returnedUser);
+    }
+
+    @Test
+    public void deleteUserByUserId_WhenUserIdNotFound() {
+        when(userService.deleteUserByUserId(10)).thenReturn(null);
+
+        User nullUser = userService.findUserByUserId(10);
+
+        verify(userRepository, times(1)).findOne(10);
+
+        assertNull(nullUser);
     }
 }
