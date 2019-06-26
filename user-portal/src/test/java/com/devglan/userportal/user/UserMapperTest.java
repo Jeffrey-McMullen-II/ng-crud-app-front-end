@@ -1,50 +1,32 @@
 package com.devglan.userportal.user;
 
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class UserMapperTest
 {
+    private UserMapper userMapper;
 
-}
-
-/*
-package com.tli.crm.customers.contacts;
-
-import com.tli.crm.contacts.Contact;
-import com.tli.crm.contacts.ContactDTO;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-class CustomerContactMapperTest {
-
-    private CustomerContactMapper customerContactMapper;
-
-    @BeforeEach
-    void setUp() {
-        customerContactMapper = new CustomerContactMapper();
+    @Before
+    public void setUp() {
+        userMapper = new UserMapper();
     }
 
     @Test
-    void mapModelToDTO() {
-        Contact contact = Contact.builder()
-            .contactId(1)
-            .firstName("Test")
-            .lastName("Name")
-            .phoneNumber("(555) 555-5555")
-            .email("test.email@example.org")
-            .build();
-        CustomerContact customerContact = new CustomerContact();
-        customerContact.setId(new CustomerContactId(1, 1));
-        customerContact.setContact(contact);
-        customerContact.setPrimary(true);
+    public void mapModelToDTO() {
+        User user = User.builder()
+                .id(1)
+                .email("test@test.com")
+                .firstName("Test")
+                .lastName("Testington")
+                .build();
 
-        ContactDTO contactDTO = customerContactMapper.mapModelToDTO(customerContact, ContactDTO.class);
+        UserDTO userDTO = userMapper.mapModelToDto(user);
 
-        Assertions.assertEquals(contact.getContactId(), contactDTO.getContactId(), "Contact ids do not match");
-        Assertions.assertEquals(contact.getFirstName(), contactDTO.getContactFirstName(), "Contact first names do not match");
-        Assertions.assertEquals(contact.getLastName(), contactDTO.getContactLastName(), "Contact last names do not match");
-        Assertions.assertEquals(contact.getEmail(), contactDTO.getContactEmail(), "Emails do not match");
-        Assertions.assertEquals(contact.getPhoneNumber(), contactDTO.getContactPhoneNumber(), "Phone numbers do not match");
+        assertEquals(user.getId(), userDTO.getUserId());
+        assertEquals(user.getFirstName(), userDTO.getFirstName());
+        assertEquals(user.getLastName(), userDTO.getLastName());
+        assertEquals(user.getEmail(), userDTO.getEmail());
     }
-
 }
- */

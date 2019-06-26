@@ -11,11 +11,11 @@ public class UserMapper {
 
     private ModelMapper modelMapper;
 
-    public UserMapper() {
+    UserMapper() {
         modelMapper = new ModelMapper();
     }
 
-    public UserDTO mapModelToDto(User user) {
+    UserDTO mapModelToDto(User user) {
         return modelMapper.map(user, UserDTO.class);
     }
 

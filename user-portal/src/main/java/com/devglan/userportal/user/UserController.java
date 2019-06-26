@@ -1,5 +1,6 @@
 package com.devglan.userportal.user;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ public class UserController {
 
     private UserService userService;
 
-    public UserController (UserService userService) {
+    UserController(UserService userService) {
         this.userService = userService;
     }
 
