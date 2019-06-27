@@ -1,15 +1,16 @@
 package com.devglan.userportal.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 class UserDTO {
 
-    private Integer userId;
+    private Integer Id;
     private String email;
     private String firstName;
     private String lastName;
-    private String anExtraField;
 }

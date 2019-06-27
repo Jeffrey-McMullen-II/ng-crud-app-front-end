@@ -1,6 +1,7 @@
 package com.devglan.userportal.user;
 
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -8,28 +9,28 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public UserService (UserRepository userRepository) {
+    private UserMapper userMapper;
+
+    public UserService (UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    User createUser(User user) {
-        return userRepository.save(user);
-    }
+    UserDTO createUser(User user) { return userMapper.mapModelToDTO(userRepository.save(user)); }
 
-    List<User> findAllUsers() { return userRepository.findAll();}
+    List<UserDTO> findAllUsers() { return userMapper.mapModelsToDTOS((userRepository.findAll())); }
 
-    User findUserByUserId(int id) { return userRepository.findOne(id); }
+    UserDTO findUserByUserId(int id) { return userMapper.mapModelToDTO(userRepository.findOne(id)); }
 
-    User updateUser(User user) {
-        return userRepository.save(user);
-    }
+    UserDTO updateUser(User user) { return userMapper.mapModelToDTO(userRepository.save(user)); }
 
-    User deleteUserByUserId(int id) {
-        User user = findUserByUserId(id);
+    UserDTO deleteUserByUserId(int id) {
+        User user = findUserByUserIdForDeletion(id);
         if (user != null) {
             userRepository.delete(user);
-            return user;
         }
-        return null;
+        return userMapper.mapModelToDTO(user);
     }
+
+    private User findUserByUserIdForDeletion(int id) { return userRepository.findOne(id); }
 }

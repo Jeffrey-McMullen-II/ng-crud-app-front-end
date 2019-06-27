@@ -22,9 +22,9 @@ public class UserMapperTest
                 .lastName("Testington")
                 .build();
 
-        UserDTO userDTO = userMapper.mapModelToDto(user);
+        UserDTO userDTO = userMapper.mapModelToDTO(user);
 
-        assertEquals(user.getId(), userDTO.getUserId());
+        assertEquals(user.getId(), userDTO.getId());
         assertEquals(user.getFirstName(), userDTO.getFirstName());
         assertEquals(user.getLastName(), userDTO.getLastName());
         assertEquals(user.getEmail(), userDTO.getEmail());

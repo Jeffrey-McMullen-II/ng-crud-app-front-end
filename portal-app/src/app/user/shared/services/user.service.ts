@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from './user.model';
-import { Component } from '@angular/core';
+
+import { User } from '../models/user.model';
+import {Observable} from 'rxjs/Observable';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +13,7 @@ export class UserService {
 
   private sharedUser: User;
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   private userUrl = 'http://localhost:8080/user-portal/users';
 
@@ -22,6 +22,7 @@ export class UserService {
   }
 
   public deleteUser(user): Observable<any> {
+    console.log(user.id);
     return this.http.delete<User>(`${this.userUrl}/${user.id}`);
   }
 

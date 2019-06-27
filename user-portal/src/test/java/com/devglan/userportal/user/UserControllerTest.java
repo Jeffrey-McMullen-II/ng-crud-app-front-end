@@ -23,7 +23,7 @@ public class UserControllerTest {
 
     private MockMvc mockMvc;
 
-    private List<User> testUsers = new ArrayList<>();
+    private List<UserDTO> testUserDTOS = new ArrayList<>();
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -33,19 +33,19 @@ public class UserControllerTest {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        testUsers.add(new User(1,"test@email.com","tester","testing"));
-        testUsers.add(new User(2,"tester@email.com","testington","test"));
+        testUserDTOS.add(UserDTO.builder().Id(1).email("test@email.com").firstName("tester").lastName("testing").build());
+        testUserDTOS.add(UserDTO.builder().Id(1).email("testy@email.com").firstName("testy").lastName("tester").build());
         mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).build();
     }
 
     @Test
     public void createUser() throws Exception {
         String url = "/users";
-        String payload = mapper.writeValueAsString(testUsers.get(1));
+        String payload = mapper.writeValueAsString(testUserDTOS.get(1));
 
-        given(userService.createUser(any(User.class))).willReturn((testUsers.get(1)));
+        given(userService.createUser(any(User.class))).willReturn((testUserDTOS.get(1)));
 
-        String expectedResult = mapper.writeValueAsString(testUsers.get(1));
+        String expectedResult = mapper.writeValueAsString(testUserDTOS.get(1));
 
         String actualResult = mockMvc.perform(post(url).content(payload).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -58,9 +58,9 @@ public class UserControllerTest {
 
     @Test
     public void findAllUsers() throws Exception {
-        given(userService.findAllUsers()).willReturn(testUsers);
+        given(userService.findAllUsers()).willReturn(testUserDTOS);
 
-        String expectedResult = mapper.writeValueAsString(testUsers);
+        String expectedResult = mapper.writeValueAsString(testUserDTOS);
 
         String actualResult = mockMvc.perform(get("/users"))
                 .andExpect(status().isOk())
@@ -73,9 +73,9 @@ public class UserControllerTest {
 
     @Test
     public void findUserByUserId() throws Exception {
-        given(userService.findUserByUserId(0)).willReturn(testUsers.get(0));
+        given(userService.findUserByUserId(0)).willReturn(testUserDTOS.get(0));
 
-        String expectedResult = mapper.writeValueAsString(testUsers.get(0));
+        String expectedResult = mapper.writeValueAsString(testUserDTOS.get(0));
 
         String actualResult = mockMvc.perform(get("/users/" + 0))
                 .andExpect(status().isOk())
@@ -104,11 +104,11 @@ public class UserControllerTest {
     @Test
     public void updateUser() throws Exception {
         String url = "/users";
-        String payload = mapper.writeValueAsString(testUsers.get(1));
+        String payload = mapper.writeValueAsString(testUserDTOS.get(1));
 
-        given(userService.updateUser(any(User.class))).willReturn((testUsers.get(1)));
+        given(userService.updateUser(any(User.class))).willReturn((testUserDTOS.get(1)));
 
-        String expectedResult = mapper.writeValueAsString(testUsers.get(1));
+        String expectedResult = mapper.writeValueAsString(testUserDTOS.get(1));
 
         String actualResult = mockMvc.perform(put(url).content(payload).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -121,9 +121,9 @@ public class UserControllerTest {
 
     @Test
     public void deleteUserByUserId() throws Exception {
-        given(userService.deleteUserByUserId(0)).willReturn(testUsers.get(0));
+        given(userService.deleteUserByUserId(0)).willReturn(testUserDTOS.get(0));
 
-        String expectedResult = mapper.writeValueAsString(testUsers.get(0));
+        String expectedResult = mapper.writeValueAsString(testUserDTOS.get(0));
 
         String actualResult = mockMvc.perform(delete("/users/" + 0))
                 .andExpect(status().isOk())

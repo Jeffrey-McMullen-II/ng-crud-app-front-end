@@ -1,9 +1,9 @@
 package com.devglan.userportal.user;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -18,37 +18,37 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
+    public ResponseEntity<List<UserDTO>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity<User> findUserByUserId(@PathVariable("id") int id) {
+    public ResponseEntity<UserDTO> findUserByUserId(@PathVariable("id") Integer id) {
 
-        User user = userService.findUserByUserId(id);
+        UserDTO userDTO = userService.findUserByUserId(id);
 
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        if (userDTO != null) {
+            return ResponseEntity.ok(userDTO);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> updateUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<User> deleteUserByUserId(@PathVariable("id") int id) {
+    public ResponseEntity<UserDTO> deleteUserByUserId(@PathVariable("id") Integer id) {
 
-        User user = userService.deleteUserByUserId(id);
+        UserDTO userDTO = userService.deleteUserByUserId(id);
 
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        if (userDTO != null) {
+            return ResponseEntity.ok(userDTO);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
