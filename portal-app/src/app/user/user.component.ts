@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {User} from './shared/models/user.model';
+import {User} from './shared/models/user';
 import {UserService} from './shared/services/user.service';
 
 @Component({
@@ -16,19 +16,25 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsers();
+    this.getUsersByName();
   }
 
   getUsers() {
-    console.log(this.users);
     this.userService.getUsers()
       .subscribe(data => {
         this.users = data;
       });
   }
 
+  getUsersByName() {
+    this.userService.getUsersByName()
+      .subscribe(data => {
+        this.users = data;
+      });
+  }
+
   onDeleteClicked(user: User) {
-    this.userService.deleteUser(user)
+    this.userService.deleteUser(user.id)
       .subscribe(data => {
         this.users = this.users.filter(u => u !== user);
       });

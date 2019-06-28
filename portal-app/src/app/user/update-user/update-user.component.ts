@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { User } from "../shared/models/user.model";
+import { User } from "../shared/models/user";
 import { UserService } from "../shared/services/user.service";
 
 
