@@ -25,6 +25,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
 
+    @GetMapping(path = {"/asc"})
+    public ResponseEntity<List<UserDTO>> findAllUsersByFirstName() { return ResponseEntity.ok(userService.findAllUsersByFirstName()); }
+
     @GetMapping(path = {"/{id}"})
     public ResponseEntity<UserDTO> findUserByUserId(@PathVariable("id") Integer id) {
 

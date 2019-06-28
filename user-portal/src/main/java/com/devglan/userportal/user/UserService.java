@@ -1,5 +1,6 @@
 package com.devglan.userportal.user;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,10 @@ public class UserService {
     UserDTO createUser(User user) { return userMapper.mapModelToDTO(userRepository.save(user)); }
 
     List<UserDTO> findAllUsers() { return userMapper.mapModelsToDTOS((userRepository.findAll())); }
+
+    List<UserDTO> findAllUsersByFirstName() {
+        return userMapper.mapModelsToDTOS(userRepository.findAll(new Sort(Sort.Direction.ASC, "firstName")));
+    }
 
     UserDTO findUserByUserId(int id) { return userMapper.mapModelToDTO(userRepository.findOne(id)); }
 

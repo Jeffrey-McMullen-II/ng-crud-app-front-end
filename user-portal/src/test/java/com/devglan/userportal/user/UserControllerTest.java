@@ -72,6 +72,21 @@ public class UserControllerTest {
     }
 
     @Test
+    public void findAllUsersByName() throws Exception {
+        given(userService.findAllUsersByFirstName()).willReturn(testUserDTOS);
+
+        String expectedResult = mapper.writeValueAsString(testUserDTOS);
+
+        String actualResult = mockMvc.perform(get("/users/asc"))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     public void findUserByUserId() throws Exception {
         given(userService.findUserByUserId(0)).willReturn(testUserDTOS.get(0));
 
