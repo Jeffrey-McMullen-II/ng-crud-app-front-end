@@ -22,11 +22,11 @@ export class UserService {
     return this.http.post<User>(`${this.userUrl}`, user);
   }
 
-  public getUsers(): Observable<User[]> {
+  public findAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.userUrl}`);
   }
 
-  public getUsersByFirstName(): Observable<User[]> {
+  public findAllUsersByFirstName(): Observable<User[]> {
     return this.http.get<User[]>(`${this.userUrl}/asc`);
   }
 

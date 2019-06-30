@@ -20,14 +20,14 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers()
+    this.userService.findAllUsers()
       .subscribe(data => {
         this.users = data;
       });
   }
 
   getUsersByFirstName() {
-    this.userService.getUsersByFirstName()
+    this.userService.findAllUsersByFirstName()
       .subscribe(data => {
         this.users = data;
       });
