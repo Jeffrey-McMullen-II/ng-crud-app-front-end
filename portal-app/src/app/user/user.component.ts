@@ -16,17 +16,17 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsersByFirstName();
+    this.findAllUsersByFirstName();
   }
 
-  getUsers() {
+  findAllUsers() {
     this.userService.findAllUsers()
       .subscribe(data => {
         this.users = data;
       });
   }
 
-  getUsersByFirstName() {
+  findAllUsersByFirstName() {
     this.userService.findAllUsersByFirstName()
       .subscribe(data => {
         this.users = data;
