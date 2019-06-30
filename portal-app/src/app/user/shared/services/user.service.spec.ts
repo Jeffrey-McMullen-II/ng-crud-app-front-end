@@ -39,7 +39,21 @@ describe('UserService', () => {
   it('should find all users', () => {
     const endpoint = `http://localhost:8080/user-portal/users`;
 
-    userService.getUsers().subscribe(
+    userService.findAllUsers().subscribe(
+      (results) => expect(results).toEqual(TEST_USERS)
+    );
+
+    const mockReq = httpMock.expectOne(endpoint);
+    mockReq.flush(TEST_USERS);
+
+    expect(mockReq.request.url).toEqual(endpoint);
+    expect(mockReq.request.method).toEqual('GET');
+  });
+
+  it('should find all users by first name', () => {
+    const endpoint = `http://localhost:8080/user-portal/users`;
+
+    userService.findAllUsersByFirstName().subscribe(
       (results) => expect(results).toEqual(TEST_USERS)
     );
 

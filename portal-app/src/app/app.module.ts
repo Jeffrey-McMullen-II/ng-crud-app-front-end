@@ -10,8 +10,6 @@ import { AddUserComponent } from './user/add-user/add-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { UserService } from './user/shared/services/user.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
