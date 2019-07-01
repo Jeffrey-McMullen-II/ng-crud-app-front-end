@@ -28,6 +28,7 @@ describe('UserComponent', () => {
     };
 
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [UserComponent],
       providers: [
         {provide: UserService, useValue: mockUserService},

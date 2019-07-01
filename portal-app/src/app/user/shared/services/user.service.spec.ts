@@ -51,7 +51,7 @@ describe('UserService', () => {
   });
 
   it('should find all users by first name', () => {
-    const endpoint = `http://localhost:8080/user-portal/users`;
+    const endpoint = `http://localhost:8080/user-portal/users/asc`;
 
     userService.findAllUsersByFirstName().subscribe(
       (results) => expect(results).toEqual(TEST_USERS)
