@@ -22,11 +22,6 @@ export class UserComponent implements OnInit {
   findAllUsers() {
     this.userService.findAllUsers()
       .subscribe(data => {
-        
-        data.forEach((value: any, key: any) => {
-          console.log( key, value);
-      });
-
         this.users = data;
       });
   }
@@ -34,20 +29,20 @@ export class UserComponent implements OnInit {
   findAllUsersByFirstName() {
     this.userService.findAllUsersByFirstName()
       .subscribe(data => {
-
         this.users = data;
       });
+  }
+
+  public onUpdateClicked(user: User) {
+    this.userService.setSharedUser(user);
+    this.router.navigate(['/update'], {replaceUrl: true});
   }
 
   onDeleteClicked(user: User) {
     this.userService.deleteUser(user.id)
       .subscribe(data => {
+        console.log('Successfuly subscribed');
         this.users = this.users.filter(u => u !== user);
       });
-  }
-
-  public onUpdateClicked(newUser: User) {
-    this.userService.setSharedUser(newUser);
-    this.router.navigate(['/update'], {replaceUrl: true});
   }
 }
