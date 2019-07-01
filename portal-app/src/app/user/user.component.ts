@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
 
   users: User[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -22,6 +22,11 @@ export class UserComponent implements OnInit {
   findAllUsers() {
     this.userService.findAllUsers()
       .subscribe(data => {
+        
+        data.forEach((value: any, key: any) => {
+          console.log( key, value);
+      });
+
         this.users = data;
       });
   }
@@ -29,6 +34,7 @@ export class UserComponent implements OnInit {
   findAllUsersByFirstName() {
     this.userService.findAllUsersByFirstName()
       .subscribe(data => {
+
         this.users = data;
       });
   }

@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 import {TEST_USERS} from './shared/models/test/users';
 import { UserService } from './shared/services/user.service';
-import {of} from 'rxjs';
+import { of } from 'rxjs/observable/of';
+import { Router } from '@angular/router';
+import { User } from './shared/models/user';
 
 fdescribe('UserComponent', () => {
   let component: UserComponent;
@@ -10,6 +12,7 @@ fdescribe('UserComponent', () => {
   let mockUserService: Partial<UserService>;
   let spy: any;
   let fixture: ComponentFixture<UserComponent>;
+  let router: Router;
   const TEST_USER = TEST_USERS[0];
 
   beforeEach(async(() => {
@@ -19,7 +22,10 @@ fdescribe('UserComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ UserComponent ],
-      providers: [{provide: UserService, useValue: mockUserService}]
+      providers: [
+        {provide: UserService, useValue: mockUserService},
+        {provide: Router, useValue: router}
+      ]
     })
       .compileComponents();
   }));
@@ -27,8 +33,7 @@ fdescribe('UserComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    userService = TestBed.get(userService);
-    fixture.detectChanges();
+    userService = TestBed.get(UserService);
   });
 
   afterEach(() => {
@@ -42,8 +47,9 @@ fdescribe('UserComponent', () => {
 
   it('should find all users', () => {
     spyOn(userService, 'findAllUsers').and.callThrough();
-    component.users = TEST_USERS;
-    expect(component.findAllUsers).toEqual(TEST_USERS);
+    component.findAllUsers();
+
+    expect(component.users).toEqual(TEST_USERS);
     expect(userService.findAllUsers).toHaveBeenCalled();
   });
 
