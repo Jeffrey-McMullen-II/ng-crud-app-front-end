@@ -1,14 +1,15 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {of} from 'rxjs/observable/of';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+
 import {UserComponent} from './user.component';
 import {TEST_USERS} from './shared/models/test/users';
 import {UserService} from './shared/services/user.service';
-import {of} from 'rxjs/observable/of';
-import {Router} from '@angular/router';
 import {User} from './shared/models/user';
-import {RouterTestingModule} from '@angular/router/testing';
 
 describe('UserComponent', () => {
-  let component: UserComponent;
+  let userComponent: UserComponent;
   let userService: UserService;
   let mockUserService: Partial<UserService>;
   let fixture: ComponentFixture<UserComponent>;
@@ -22,7 +23,7 @@ describe('UserComponent', () => {
     mockUserService = {
       findAllUsers: () => of(TEST_USERS),
       findAllUsersByFirstName: () => of(TEST_USERS),
-      deleteUser: () => of(MOCK_TEST_USERS),
+      deleteUser: () => of(TEST_USER),
       setSharedUser(sharedUser: User) { this.sharedUser = sharedUser; },
       getSharedUser(): User { return this.sharedUser; }
     };
@@ -40,47 +41,43 @@ describe('UserComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
-    component = fixture.componentInstance;
+    userComponent = fixture.componentInstance;
     userService = TestBed.get(UserService);
 
     TEST_USER = TEST_USERS[0];
     MOCK_TEST_USERS = TEST_USERS;
-    component.users = TEST_USERS;
+    userComponent.users = TEST_USERS;
   });
 
   afterEach(() => {
     userService = null;
-    component = null;
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    userComponent = null;
   });
 
   it('should find all users', () => {
     spyOn(userService, 'findAllUsers').and.callThrough();
-    component.findAllUsers();
-    expect(component.users).toEqual(TEST_USERS);
-    expect(userService.findAllUsers).toHaveBeenCalled();
+    userComponent.findAllUsers();
+    expect(userComponent.users).toEqual(TEST_USERS);
+    expect(userService.findAllUsers).toHaveBeenCalledTimes(1);
   });
 
   it('should find all users by first name', () => {
     spyOn(userService, 'findAllUsersByFirstName').and.callThrough();
-    component.findAllUsersByFirstName();
-    expect(component.users).toEqual(TEST_USERS);
-    expect(userService.findAllUsersByFirstName).toHaveBeenCalled();
+    userComponent.findAllUsersByFirstName();
+    expect(userComponent.users).toEqual(TEST_USERS);
+    expect(userService.findAllUsersByFirstName).toHaveBeenCalledTimes(1);
   });
 
   it('should set shared user and navigate when on updated clicked', () => {
-    component.onUpdateClicked(TEST_USER);
+    userComponent.onUpdateClicked(TEST_USER);
     expect(userService.getSharedUser()).toEqual(TEST_USER);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/update'], {replaceUrl: true});
   });
 
   it('should delete a user on delete clicked', () => {
     spyOn(userService, 'deleteUser').and.callThrough();
-    component.onDeleteClicked(TEST_USER);
+    userComponent.onDeleteClicked(TEST_USER);
     MOCK_TEST_USERS = MOCK_TEST_USERS.filter(u => u !== TEST_USER);
-    expect(component.users).toEqual(MOCK_TEST_USERS);
+    expect(userComponent.users).toEqual(MOCK_TEST_USERS);
   });
 });

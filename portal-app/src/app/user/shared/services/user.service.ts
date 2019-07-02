@@ -1,12 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import {User} from '../models/user';
 import {Observable} from 'rxjs/Observable';
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
 
 @Injectable()
 export class UserService {
@@ -34,7 +30,7 @@ export class UserService {
     return this.http.put<User>(`${this.userUrl}`, user);
   }
 
-  public deleteUser(id: Number): Observable<any> {
+  public deleteUser(id: Number): Observable<User> {
     return this.http.delete<User>(`${this.userUrl}/${id}`);
   }
 

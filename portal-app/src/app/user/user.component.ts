@@ -41,7 +41,6 @@ export class UserComponent implements OnInit {
   onDeleteClicked(user: User) {
     this.userService.deleteUser(user.id)
       .subscribe(data => {
-        console.log('Successfuly subscribed');
         this.users = this.users.filter(u => u !== user);
       });
   }
