@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserMapper {
+class UserMapper {
 
     private ModelMapper modelMapper;
 
@@ -23,20 +23,21 @@ public class UserMapper {
     List<UserDTO> mapModelsToDTOS(List<User> users) {
         if (users != null) {
             List<UserDTO> userDTOS = new ArrayList<>();
-            for(User user : users) { userDTOS.add(modelMapper.map(user, UserDTO.class)); }
+            for(User user : users) {
+                userDTOS.add(explicitMapModelToDTO(user));
+            }
             return userDTOS;
         }
         return null;
     }
 
     //Optional explicit mapping examples
-    public UserDTO explicitMapModelToDto (User user) {
-
+    UserDTO explicitMapModelToDTO (User user) {
         ModelMapper modelMapper = new ModelMapper();
 
         PropertyMap<User, UserDTO> userMap = new PropertyMap<User, UserDTO>() {
             protected void configure() {
-                skip(destination.getId());
+                map().setId(source.getId());
                 map().setEmail(source.getEmail());
                 map().setFirstName(source.getFirstName());
                 map().setLastName(source.getLastName());
