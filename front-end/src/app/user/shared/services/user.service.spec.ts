@@ -1,7 +1,8 @@
-import {TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {UserService} from './user.service';
-import {TEST_USERS} from '../models/test/users';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { TEST_USERS } from '../models/test/users';
+import { UserService } from './user.service';
 
 describe('UserService', () => {
   const TEST_USER = TEST_USERS[0];
