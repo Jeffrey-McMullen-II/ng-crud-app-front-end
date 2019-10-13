@@ -1,11 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {of} from 'rxjs/observable/of';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { of } from 'rxjs/observable/of';
 
-import {UpdateUserComponent} from './update-user.component';
-import {UserService} from '../shared/services/user.service';
-import {TEST_USERS} from '../shared/models/test/users';
-
+import { UpdateUserComponent } from './update-user.component';
+import { TEST_USERS } from '../shared/models/test/users';
+import { UserService } from '../shared/services/user.service';
 
 describe('UpdateUserComponent', () => {
   let updateUserComponent: UpdateUserComponent;

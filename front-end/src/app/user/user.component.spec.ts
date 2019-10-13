@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {of} from 'rxjs/observable/of';
-import {Router} from '@angular/router';
-import {RouterTestingModule} from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs/observable/of';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import {UserComponent} from './user.component';
-import {TEST_USERS} from './shared/models/test/users';
-import {UserService} from './shared/services/user.service';
-import {User} from './shared/models/user';
+import { UserComponent } from './user.component';
+import { TEST_USERS } from './shared/models/test/users';
+import { User } from './shared/models/user';
+import { UserService } from './shared/services/user.service';
 
 describe('UserComponent', () => {
   let userComponent: UserComponent;
