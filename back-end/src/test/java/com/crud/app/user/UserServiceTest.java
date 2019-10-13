@@ -2,6 +2,7 @@ package com.crud.app.user;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 public class UserServiceTest {
@@ -42,14 +41,11 @@ public class UserServiceTest {
     @Test
     public void createUser() {
         when(userRepository.save(testUsers.get(0))).thenReturn((testUsers.get(0)));
-        when(userMapper.mapModelToDTO(testUsers.get(0))).thenReturn(testUserDTOS.get(0));
+        when(userMapper.explicitMapModelToDTO(testUsers.get(0))).thenReturn(testUserDTOS.get(0));
 
         UserDTO returnedUserDTO = userService.createUser(testUsers.get(0));
 
-        verify(userRepository, times(1)).save(testUsers.get(0));
-        verify(userMapper, times(1)).mapModelToDTO(testUsers.get(0));
-
-        assertEquals(testUserDTOS.get(0), returnedUserDTO);
+        Assertions.assertEquals(testUserDTOS.get(0), returnedUserDTO);
     }
 
     @Test
@@ -62,7 +58,7 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findAll();
         verify(userMapper, times(1)).mapModelsToDTOS(testUsers);
 
-        assertEquals(testUserDTOS, returnedUserDTOS);
+        Assertions.assertEquals(testUserDTOS, returnedUserDTOS);
     }
 
     @Test
@@ -75,20 +71,17 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findAll(new Sort(Sort.Direction.ASC, "firstName"));
         verify(userMapper, times(1)).mapModelsToDTOS(testUsers);
 
-        assertEquals(testUserDTOS, returnedUserDTOS);
+        Assertions.assertEquals(testUserDTOS, returnedUserDTOS);
     }
 
     @Test
     public void findUserByUserId() {
         when(userRepository.findOne(1)).thenReturn(testUsers.get(1));
-        when(userMapper.mapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
+        when(userMapper.explicitMapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
 
         UserDTO returnedUserDTO = userService.findUserByUserId(1);
 
-        verify(userRepository, times(1)).findOne(1);
-        verify(userMapper, times(1)).mapModelToDTO(testUsers.get(1));
-
-        assertEquals(testUserDTOS.get(1), returnedUserDTO);
+        Assertions.assertEquals(testUserDTOS.get(1), returnedUserDTO);
     }
 
     @Test
@@ -97,49 +90,40 @@ public class UserServiceTest {
 
         UserDTO nullUserDTO = userService.findUserByUserId(10);
 
-        verify(userRepository, times(1)).findOne(10);
-        verify(userMapper, times(1)).mapModelToDTO(null);
-
-        assertNull(nullUserDTO);
+        Assertions.assertNull(nullUserDTO);
     }
 
     @Test
     public void updateUser() {
         when(userRepository.save(testUsers.get(1))).thenReturn(testUsers.get(1));
-        when(userMapper.mapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
+        when(userMapper.explicitMapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
 
         UserDTO returnedUserDTO = userService.updateUser(testUsers.get(1));
 
-        verify(userRepository, times(1)).save(testUsers.get(1));
-        verify(userMapper, times(1)).mapModelToDTO(testUsers.get(1));
-
-        assertEquals(testUserDTOS.get(1), returnedUserDTO);
+        Assertions.assertEquals(testUserDTOS.get(1), returnedUserDTO);
     }
 
     @Test
     public void deleteUser() {
         when(userRepository.findOne(1)).thenReturn(testUsers.get(1));
-        when(userMapper.mapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
+        when(userMapper.explicitMapModelToDTO(testUsers.get(1))).thenReturn(testUserDTOS.get(1));
 
         UserDTO returnedUserDTO = userService.deleteUserByUserId(1);
 
-        verify(userRepository, times(1)).findOne(1);
         verify(userRepository, times(1)).delete(testUsers.get(1));
-        verify(userMapper, times(1)).mapModelToDTO(testUsers.get(1));
 
-        assertEquals(testUserDTOS.get(1), returnedUserDTO);
+        Assertions.assertEquals(testUserDTOS.get(1), returnedUserDTO);
     }
 
     @Test
     public void deleteUserByUserId_WhenUserIdNotFound() {
         when(userRepository.findOne(10)).thenReturn(null);
+        when(userMapper.explicitMapModelToDTO(null)).thenReturn(null);
 
         UserDTO nullUserDTO = userService.deleteUserByUserId(10);
 
-        verify(userRepository, times(1)).findOne(10);
         verify(userRepository, times(0)).delete(null);
-        verify(userMapper, times(1)).mapModelToDTO(null);
 
-        assertNull(nullUserDTO);
+        Assertions.assertNull(nullUserDTO);
     }
 }
