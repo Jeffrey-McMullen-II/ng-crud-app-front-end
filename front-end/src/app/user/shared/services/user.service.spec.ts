@@ -23,7 +23,7 @@ describe('UserService', () => {
   afterEach(() => httpMock.verify());
 
   it('should create a user', () => {
-    const endpoint = `http://localhost:8080/user-portal/users`;
+    const endpoint = `http://localhost:8080/crud-app/users`;
 
     userService.createUser(TEST_USER).subscribe(
       (results) => expect(results).toEqual(TEST_USER)

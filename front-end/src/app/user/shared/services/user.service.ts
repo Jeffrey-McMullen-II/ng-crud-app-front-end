@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  private userUrl = `http://localhost:8080/user-portal/users`;
+  private userUrl = `http://localhost:8080/crud-app/users`;
 
   public createUser(user): Observable<User> {
     return this.http.post<User>(`${this.userUrl}`, JSON.stringify(user), {headers: httpOptions.headers});
