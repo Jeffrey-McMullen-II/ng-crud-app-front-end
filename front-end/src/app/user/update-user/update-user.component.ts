@@ -19,8 +19,8 @@ export class UpdateUserComponent implements OnInit {
 
   onUpdateClicked() {
     this.userService.updateUser(this.user)
-      .subscribe(data => {
-        this.user = data;
+      .subscribe((user: User) => {
+        this.user = user;
         alert('User updated successfully.');
       });
   }

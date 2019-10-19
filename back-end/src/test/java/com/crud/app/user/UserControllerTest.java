@@ -40,7 +40,7 @@ public class UserControllerTest {
 
     @Test
     public void createUser() throws Exception {
-        String url = "/users";
+        String url = "/api/users";
         String payload = mapper.writeValueAsString(testUserDTOS.get(1));
 
         given(userService.createUser(any(User.class))).willReturn((testUserDTOS.get(1)));
@@ -62,7 +62,7 @@ public class UserControllerTest {
 
         String expectedResult = mapper.writeValueAsString(testUserDTOS);
 
-        String actualResult = mockMvc.perform(get("/users"))
+        String actualResult = mockMvc.perform(get("/api/users"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -72,12 +72,12 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findAllUsersByName() throws Exception {
+    public void findAllUsersByFirstNameAscending() throws Exception {
         given(userService.findAllUsersByFirstName()).willReturn(testUserDTOS);
 
         String expectedResult = mapper.writeValueAsString(testUserDTOS);
 
-        String actualResult = mockMvc.perform(get("/users/asc"))
+        String actualResult = mockMvc.perform(get("/api/users/first-name/ascending"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -92,7 +92,7 @@ public class UserControllerTest {
 
         String expectedResult = mapper.writeValueAsString(testUserDTOS.get(0));
 
-        String actualResult = mockMvc.perform(get("/users/" + 0))
+        String actualResult = mockMvc.perform(get("/api/users/" + 0))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -107,7 +107,7 @@ public class UserControllerTest {
 
         String expectedResult = "";
 
-        String actualResult = mockMvc.perform(get("/users/" + 10))
+        String actualResult = mockMvc.perform(get("/api/users" + 10))
                 .andExpect(status().isNotFound())
                 .andReturn()
                 .getResponse()
@@ -118,7 +118,7 @@ public class UserControllerTest {
 
     @Test
     public void updateUser() throws Exception {
-        String url = "/users";
+        String url = "/api/users";
         String payload = mapper.writeValueAsString(testUserDTOS.get(1));
 
         given(userService.updateUser(any(User.class))).willReturn((testUserDTOS.get(1)));
@@ -140,7 +140,7 @@ public class UserControllerTest {
 
         String expectedResult = mapper.writeValueAsString(testUserDTOS.get(0));
 
-        String actualResult = mockMvc.perform(delete("/users/" + 0))
+        String actualResult = mockMvc.perform(delete("/api/users/" + 0))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -155,7 +155,7 @@ public class UserControllerTest {
 
         String expectedResult = "";
 
-        String actualResult = mockMvc.perform(delete("/users/" + 10))
+        String actualResult = mockMvc.perform(delete("/api/users" + 10))
                 .andExpect(status().isNotFound())
                 .andReturn()
                 .getResponse()

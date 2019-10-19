@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping({"/users"})
+@RequestMapping({"/api/users"})
 public class UserController {
 
     private UserService userService;
@@ -25,7 +24,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
 
-    @GetMapping(path = {"/asc"})
+    @GetMapping(path = {"/first-name/ascending"})
     public ResponseEntity<List<UserDTO>> findAllUsersByFirstName() { return ResponseEntity.ok(userService.findAllUsersByFirstName()); }
 
     @GetMapping(path = {"/{id}"})

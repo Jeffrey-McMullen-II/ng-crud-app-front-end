@@ -22,15 +22,15 @@ export class UserComponent implements OnInit {
 
   findAllUsers() {
     this.userService.findAllUsers()
-      .subscribe(data => {
-        this.users = data;
+      .subscribe((users: User[]) => {
+        this.users = users;
       });
   }
 
   findAllUsersByFirstName() {
     this.userService.findAllUsersByFirstName()
-      .subscribe(data => {
-        this.users = data;
+      .subscribe((users: User[]) => {
+        this.users = users;
       });
   }
 
@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
 
   onDeleteClicked(user: User) {
     this.userService.deleteUser(user.id)
-      .subscribe(data => {
+      .subscribe((result) => {
         this.users = this.users.filter(u => u !== user);
       });
   }
