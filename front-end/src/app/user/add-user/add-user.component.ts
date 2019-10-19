@@ -15,8 +15,8 @@ export class AddUserComponent {
 
   onCreateClicked() {
     this.userService.createUser(this.user)
-      .subscribe(data => {
-        this.user = data;
+      .subscribe((user: User) => {
+        this.user = user;
         alert('User created successfully.');
       });
   }

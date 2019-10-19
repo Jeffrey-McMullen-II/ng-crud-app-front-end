@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import {User} from '../models/user';
+import { User } from '../models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,10 +13,10 @@ export class UserService {
 
   private sharedUser: User;
 
+  userUrl = `/api/users`;
+
   constructor(private http: HttpClient) {
   }
-
-  private userUrl = `http://localhost:8080/crud-app/users`;
 
   public createUser(user): Observable<User> {
     return this.http.post<User>(`${this.userUrl}`, JSON.stringify(user), {headers: httpOptions.headers});
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   public findAllUsersByFirstName(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/asc`);
+    return this.http.get<User[]>(`${this.userUrl}/first-name/ascending`);
   }
 
   public updateUser(user): Observable<User> {
