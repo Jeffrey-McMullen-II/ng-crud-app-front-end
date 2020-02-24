@@ -122,7 +122,7 @@ public class UserServiceTest {
 
         UserDTO nullUserDTO = userService.deleteUserByUserId(10);
 
-        verify(userRepository, times(0)).delete(null);
+        verify(userRepository, times(0)).delete(any(User.class));
 
         Assertions.assertNull(nullUserDTO);
     }
