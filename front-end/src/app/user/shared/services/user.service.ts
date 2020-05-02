@@ -12,11 +12,9 @@ const httpOptions = {
 export class UserService {
 
   private sharedUser: User;
-
   userUrl = `/api/users`;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   public createUser(user): Observable<User> {
     return this.http.post<User>(`${this.userUrl}`, JSON.stringify(user), {headers: httpOptions.headers});
@@ -34,7 +32,7 @@ export class UserService {
     return this.http.put<User>(`${this.userUrl}`, JSON.stringify(user), {headers: httpOptions.headers});
   }
 
-  public deleteUser(id: Number): Observable<User> {
+  public deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`${this.userUrl}/${id}`);
   }
 

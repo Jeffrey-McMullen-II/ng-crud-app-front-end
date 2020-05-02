@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping({"/api/users"})
+@RequestMapping("/api/users")
 public class UserController {
 
     private UserService userService;
@@ -16,18 +17,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<UserDTO>> findAllUsers() { return ResponseEntity.ok(userService.findAllUsers()); }
 
-    @GetMapping(path = {"/first-name/ascending"})
+    @GetMapping(path = "/first-name/ascending")
     public ResponseEntity<List<UserDTO>> findAllUsersByFirstName() { return ResponseEntity.ok(userService.findAllUsersByFirstName()); }
 
-    @GetMapping(path = {"/{id}"})
+    @GetMapping(path = "/{id}")
     public ResponseEntity<UserDTO> findUserByUserId(@PathVariable("id") Integer id) {
 
         UserDTO userDTO = userService.findUserByUserId(id);
@@ -39,12 +40,12 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping
+    @PutMapping()
     public ResponseEntity<UserDTO> updateUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
-    @DeleteMapping(path = {"/{id}"})
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<UserDTO> deleteUserByUserId(@PathVariable("id") Integer id) {
 
         UserDTO userDTO = userService.deleteUserByUserId(id);

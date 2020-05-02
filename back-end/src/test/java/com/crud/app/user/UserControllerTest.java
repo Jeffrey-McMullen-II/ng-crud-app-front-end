@@ -18,7 +18,6 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 public class UserControllerTest {
 
     private MockMvc mockMvc;
@@ -107,7 +106,7 @@ public class UserControllerTest {
 
         String expectedResult = "";
 
-        String actualResult = mockMvc.perform(get("/api/users" + 10))
+        String actualResult = mockMvc.perform(get("/api/users/" + 10))
                 .andExpect(status().isNotFound())
                 .andReturn()
                 .getResponse()
@@ -155,7 +154,7 @@ public class UserControllerTest {
 
         String expectedResult = "";
 
-        String actualResult = mockMvc.perform(delete("/api/users" + 10))
+        String actualResult = mockMvc.perform(delete("/api/users/" + 10))
                 .andExpect(status().isNotFound())
                 .andReturn()
                 .getResponse()

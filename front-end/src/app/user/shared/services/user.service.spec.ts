@@ -39,7 +39,7 @@ describe('UserService', () => {
       (results) => expect(results).toEqual(TEST_USERS)
     );
 
-    const mockReq = httpMock.expectOne(userService.userUrl);
+    const mockReq = httpMock.expectOne(`${userService.userUrl}`);
     mockReq.flush(TEST_USERS);
 
     expect(mockReq.request.method).toEqual('GET');
