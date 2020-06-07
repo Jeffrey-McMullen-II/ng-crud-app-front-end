@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://localhost:8080/crud-app",
+    "target": "http://localhost:8081/",
     "secure": true,
     "logLevel": "debug",
     "ws": true
