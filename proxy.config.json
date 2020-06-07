@@ -1,8 +1,8 @@
 {
-    "/api/*": {
-      "target": "http://localhost:80/symphart/public/",
-      "secure": true,
-      "logLevel": "debug",
-      "ws": true
-    }
+  "/api/*": {
+    "target": "http://localhost:8080/crud-app",
+    "secure": true,
+    "logLevel": "debug",
+    "ws": true
+  }
 }
