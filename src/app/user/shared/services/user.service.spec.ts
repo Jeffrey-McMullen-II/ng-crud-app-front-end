@@ -68,11 +68,11 @@ describe('UserService', () => {
   });
 
   it('should delete a user', () => {
-    userService.deleteUser(TEST_USER.id).subscribe(
+    userService.deleteUser(TEST_USER.userId).subscribe(
       (results) => expect(results).toEqual(TEST_USER)
     );
 
-    const mockReq = httpMock.expectOne(`${userService.userUrl}/${TEST_USER.id}`);
+    const mockReq = httpMock.expectOne(`${userService.userUrl}/${TEST_USER.userId}`);
     mockReq.flush(TEST_USER);
 
     expect(mockReq.request.method).toEqual('DELETE');

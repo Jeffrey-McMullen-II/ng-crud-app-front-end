@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
   }
 
   onDeleteClicked(user: User) {
-    this.userService.deleteUser(user.id)
+    this.userService.deleteUser(user.userId)
       .subscribe((result) => {
         this.users = this.users.filter(u => u !== user);
       });
